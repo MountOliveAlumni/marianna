@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Marianna 👑💜</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+
+    background: linear-gradient(120deg, #2e003e, #6a11cb, #9b5de5, #3a0ca3);
+    background-size: 400% 400%;
+    animation: bgMove 10s ease infinite;
+  }
+
+  @keyframes bgMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* NAVBAR */
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 25px;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(8px);
+    z-index: 999;
+  }
+
+  .navbar .logo {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  /* HERO */
+  .hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 60px;
+  }
+
+  h1 {
+    font-size: 52px;
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #6a11cb;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  /* QUEEN BOX */
+  .queen-box {
+    margin-top: 20px;
+    padding: 20px;
+    max-width: 650px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 80px 20px;
+    scroll-margin-top: 80px;
+  }
+
+  /* SLIDESHOW */
+  .slideshow img {
+    width: 100%;
+    max-width: 420px;
+    height: 420px;
+    object-fit: contain;
+    border-radius: 15px;
+  }
+
+  /* MESSAGE */
+  .message {
+    max-width: 650px;
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  /* SURPRISE */
+  #surprise {
+    background: rgba(255,255,255,0.08);
+    border-radius: 15px;
+    margin: 20px;
+  }
+
+  /* FLOATING */
+  .heart, .sparkle {
+    position: fixed;
+    animation: floatUp 6s linear infinite;
+  }
+
+  @keyframes floatUp {
+    0% {transform: translateY(100vh); opacity: 1;}
+    100% {transform: translateY(-10vh); opacity: 0;}
+  }
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="navbar">
+  <div class="logo">💜 Marianna</div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#memories">Memories</a></li>
+    <li><a href="#queen">Queen</a></li>
+    <li><a href="#surprise">Surprise</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section id="home" class="hero">
+
+  <h1>👑 Happy Birthday Marianna 👑</h1>
+  <p>A queen was born today 💜✨</p>
+
+  <!-- FIXED BUTTON -->
+  <button onclick="startShow(); document.getElementById('surprise').scrollIntoView({behavior:'smooth'})">
+    Open Your Surprise 🎁
+  </button>
+
+  <div class="queen-box">
+    👑 TODAY A QUEEN WAS BORN 👑<br><br>
+    Marianna Michael 💜 made the world brighter ✨
+  </div>
+</section>
+
+<!-- MEMORIES -->
+<section id="memories">
+  <h2>📸 Memories</h2>
+
+  <div class="slideshow">
+    <img id="slideImage" src="pictures/img1.jpeg">
+  </div>
+
+  <br>
+  <button onclick="prevSlide()">⬅️</button>
+  <button onclick="nextSlide()">➡️</button>
+</section>
+
+<!-- QUEEN -->
+<section id="queen">
+  <div class="message">
+    💜 Marianna 💜<br><br>
+    👑 A queen was born today ✨<br>
+    Happy Birthday 🎂
+  </div>
+</section>
+
+<!-- SURPRISE -->
+<section id="surprise">
+  <h2>🎁 SURPRISE 🎉</h2>
+
+  <div class="message">
+    👑 Today the world celebrates Marianna Michael 💜<br><br>
+    You are special, loved, and amazing ✨<br>
+    May all your dreams come true 🌸
+  </div>
+</section>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+let images = [
+  "pictures/img1.jpeg",
+  "pictures/img2.jpeg",
+  "pictures/img3.jpeg",
+  "pictures/img4.jpeg",
+  "pictures/img5.jpeg",
+  "pictures/img6.jpeg",
+  "pictures/img7.jpeg"
+];
+
+let index = 0;
+
+function startShow() {
+  document.getElementById("music").play();
+  autoSlide();
+}
+
+function autoSlide() {
+  setInterval(() => {
+    index = (index + 1) % images.length;
+    document.getElementById("slideImage").src = images[index];
+  }, 3000);
+}
+
+function nextSlide() {
+  index = (index + 1) % images.length;
+  document.getElementById("slideImage").src = images[index];
+}
+
+function prevSlide() {
+  index = (index - 1 + images.length) % images.length;
+  document.getElementById("slideImage").src = images[index];
+}
+
+/* FLOATING HEARTS */
+setInterval(() => {
+  let heart = document.createElement("div");
+  heart.innerHTML = "💜";
+  heart.className = "heart";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 500);
+
+</script>
+
+</body>
+</html>
