@@ -29,7 +29,7 @@
     scroll-behavior: smooth;
   }
 
-  /* NAVBAR */
+  /* NAV */
   .navbar {
     position: fixed;
     top: 0;
@@ -67,7 +67,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 60px;
   }
 
   h1 {
@@ -108,6 +107,7 @@
     height: 420px;
     object-fit: contain;
     border-radius: 15px;
+    transition: opacity 0.3s ease;
   }
 
   /* MESSAGE */
@@ -125,8 +125,8 @@
     margin: 20px;
   }
 
-  /* FLOATING */
-  .heart, .sparkle {
+  /* FLOATING HEARTS */
+  .heart {
     position: fixed;
     animation: floatUp 6s linear infinite;
   }
@@ -157,7 +157,6 @@
   <h1>👑 Happy Birthday Marianna 👑</h1>
   <p>A queen was born today 💜✨</p>
 
-  <!-- FIXED BUTTON -->
   <button onclick="startShow(); document.getElementById('surprise').scrollIntoView({behavior:'smooth'})">
     Open Your Surprise 🎁
   </button>
@@ -228,8 +227,16 @@ function startShow() {
 function autoSlide() {
   setInterval(() => {
     index = (index + 1) % images.length;
-    document.getElementById("slideImage").src = images[index];
-  }, 3000);
+    const img = document.getElementById("slideImage");
+
+    img.style.opacity = 0;
+
+    setTimeout(() => {
+      img.src = images[index];
+      img.style.opacity = 1;
+    }, 200);
+
+  }, 1500); // ⚡ FAST SLIDESHOW
 }
 
 function nextSlide() {
