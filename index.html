@@ -218,35 +218,44 @@ let images = [
 ];
 
 let index = 0;
+let interval = null;
 
+/* START */
 function startShow() {
   document.getElementById("music").play();
+
+  if (interval) return; // prevent multiple loops
+
   autoSlide();
 }
 
+/* AUTO SLIDE */
 function autoSlide() {
-  setInterval(() => {
-    index = (index + 1) % images.length;
-    const img = document.getElementById("slideImage");
-
-    img.style.opacity = 0;
-
-    setTimeout(() => {
-      img.src = images[index];
-      img.style.opacity = 1;
-    }, 200);
-
-  }, 1500); // ⚡ FAST SLIDESHOW
+  interval = setInterval(() => {
+    changeImage(1);
+  }, 1000); // FAST 🔥
 }
 
+/* CHANGE IMAGE */
+function changeImage(step) {
+  index = (index + step + images.length) % images.length;
+
+  const img = document.getElementById("slideImage");
+  img.style.opacity = 0;
+
+  setTimeout(() => {
+    img.src = images[index];
+    img.style.opacity = 1;
+  }, 200);
+}
+
+/* BUTTONS */
 function nextSlide() {
-  index = (index + 1) % images.length;
-  document.getElementById("slideImage").src = images[index];
+  changeImage(1);
 }
 
 function prevSlide() {
-  index = (index - 1 + images.length) % images.length;
-  document.getElementById("slideImage").src = images[index];
+  changeImage(-1);
 }
 
 /* FLOATING HEARTS */
